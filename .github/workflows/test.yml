@@ -3,10 +3,10 @@ name: Node.js CI
 on:
   push:
     branches:
-      - main
+      - gh_actions   # Aktywuje workflow tylko na push do gałęzi "gh_actions"
   pull_request:
     branches:
-      - main
+      - main   # Uruchamia workflow, gdy robisz pull request do gałęzi main
 
 jobs:
   test:
