@@ -1,4 +1,4 @@
-const RozwiazDelte = require("./script");
+const RozwiazDelte = require("./delta");
 
 test("Dwa pierwiastki dla (1, -3, 2)", () => {
     expect(RozwiazDelte(1, -3, 2)).toEqual([1, 2]);
