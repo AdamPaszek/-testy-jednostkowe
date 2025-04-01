@@ -1,21 +1,26 @@
 name: Testy jednostkowe
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
+      - gh_actions
+  pull_request:
+    branches:
+      - main
+      - gh_actions
 
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Pobranie kodu
-        uses: actions/checkout@v3
-
-      - name: Instalacja Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
         with:
-          node-version: 18
-
-      - name: Instalacja zależności
+          node-version: '14'
+      - name: Install dependencies
         run: npm install
-
-      - name: Uruchomienie testów
+      - name: Run tests
         run: npm test
