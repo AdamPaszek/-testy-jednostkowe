@@ -1,26 +1,32 @@
-name: Testy jednostkowe
+name: Node.js CI
 
 on:
   push:
     branches:
       - main
-      - gh_actions
   pull_request:
     branches:
       - main
-      - gh_actions
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x]
+
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-      - name: Install dependencies
-        run: npm install
-      - name: Run tests
-        run: npm test
+    - name: Check out the code
+      uses: actions/checkout@v2
+      
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run tests
+      run: npm test
