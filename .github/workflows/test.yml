@@ -1,0 +1,21 @@
+name: Testy jednostkowe
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pobranie kodu
+        uses: actions/checkout@v3
+
+      - name: Instalacja Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Instalacja zależności
+        run: npm install
+
+      - name: Uruchomienie testów
+        run: npm test
